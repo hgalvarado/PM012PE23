@@ -10,40 +10,40 @@ import java.util.List;
 
 public class Photograh {
     //Variables
-    public static final String nameDataBase = "PM12PE23";
-    public static final int versionDataBase = 1;
-    public static final String tableName = "photos";
-    public static final String columnid = "Id";
-    public static final String columnphoto = "photo";
-    public static final String columndescription = "description";
+    private String id = "Id";
+    private String photo = "photo";
+    private String description = "description";
 
+    public Photograh(String id, String photo, String description) {
+        this.id = id;
+        this.photo = photo;
+        this.description = description;
+    }
 
-    public static final String CreateTable =
-            "CREATE TABLE " + tableName + "(" +
-                    columnid + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    columnphoto + " BLOB," +
-                    columndescription + " TEXT" +
-                    ")";
-    public static final String DropTablePhotos = "DROP TABLE IF EXISTS " + tableName;
+    public Photograh() {
+    }
 
-/*
-    public List<Photograh> getAllFotos() {
-        List<Photograh> fotosList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + tableName;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        if (cursor.moveToFirst()) {
-            do {
-                Photograh fotos = new Photograh();
-                fotos.setId(Integer.parseInt(cursor.getString(0)));
-                fotos.setPhoto(cursor.getBlob(1));
-                fotos.setDescription(cursor.getString(2));
-                fotosList.add(fotos);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        return fotosList;
-    }*/
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

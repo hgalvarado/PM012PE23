@@ -13,20 +13,37 @@ import java.util.List;
 
 public class SQLiteConexion extends SQLiteOpenHelper {
 
+    public static final String nameDataBase = "PM12PE23";
+    public static final int versionDataBase = 1;
+    public static final String tableName = "photos";
+    public static final String columnid = "Id";
+    public static final String columnphoto = "photo";
+    public static final String columndescription = "description";
+    public static final String CreateTable =
+            "CREATE TABLE " + tableName + "(" +
+                    columnid + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    columnphoto + " BLOB," +
+                    columndescription + " TEXT" +
+                    ")";
+    public static final String DropTablePhotos = "DROP TABLE IF EXISTS " + tableName;
 
-    public SQLiteConexion(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public static final String SelectTablePhotos= "SELECT * FROM " + tableName;
+
+
+    public SQLiteConexion(@Nullable Context context, @Nullable SQLiteDatabase.CursorFactory factory) {
+        super(context, nameDataBase, factory, versionDataBase);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Creacion de objetos de bases de datos
-        db.execSQL(Photograh.CreateTable);
+        db.execSQL(CreateTable);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + Photograh.DropTablePhotos);
+        db.execSQL(DropTablePhotos);
         onCreate(db);
     }
+
 
 }
